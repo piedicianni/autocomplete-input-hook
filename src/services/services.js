@@ -1,7 +1,7 @@
 const handlerError = (error) => Promise.reject(error);
 
 const citiesList = async (query) => {
-    if(query === '') return handlerError({ description: 'Query not valid!' });;
+    if(query === '') return [];
     try {
         const resp = await fetch('json-placeholder/cities_with_countries.json');
         if (!resp.ok) return handlerError({ description: resp.statusText });

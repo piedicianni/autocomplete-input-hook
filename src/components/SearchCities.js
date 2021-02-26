@@ -7,10 +7,9 @@ function SearchCities() {
     const { inputValue, items, setItems, itemSelected, onItemSelected, bind } = useAutocompleteInput(200);
 
     useEffect(() => {
-        inputValue !== ''
-            && citiesList(inputValue)
-                .then(res => setItems(res))
-                .catch(error => console.log(error));
+        citiesList(inputValue)
+            .then(res => setItems(res))
+            .catch(error => console.log(error));
     }, [inputValue, setItems]);
 
     return (
