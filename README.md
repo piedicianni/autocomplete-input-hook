@@ -2,6 +2,6 @@
 
 Simple custom React hook, that fetch query from input field and suggest terms.
 
-## Demo
+## Demo on CodeSandbox
 
-In the project directory, you can run:
+https://codesandbox.io/s/flamboyant-easley-2c2ej
