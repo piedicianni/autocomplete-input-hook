@@ -4,4 +4,4 @@ Simple custom React hook, that fetch query from input field and suggest terms.
 
 ## Demo on CodeSandbox
 
-https://codesandbox.io/s/autocomplete-hook-tcm9x
+https://codesandbox.io/s/autocomplete-hook-52mcq
