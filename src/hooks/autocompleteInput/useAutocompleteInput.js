@@ -12,22 +12,22 @@ function useAutocompleteInput(delay = 0) {
         let timeout;
         if(hasFocusOn){
             delay > 0
-            ? timeout = setTimeout(() => setInputValue(value), delay)
-            : setInputValue(value);
+            ? timeout = setTimeout(() => setValue(inputValue), delay)
+            : setValue(inputValue);
         }
         return () => timeout && clearTimeout(timeout);
-    }, [value, hasFocusOn, delay]);
+    }, [inputValue, hasFocusOn, delay]);
 
     useEffect(() => {
         const reset = () => {
-            setValue(itemSelected);
-            setInputValue('');
+            setInputValue(itemSelected);
+            setValue('');
         };
         setItems([]);
         itemSelected !== '' && reset();
     }, [itemSelected]);
 
-    const onItemSelected = (item = value) => setItemSelected(item);
+    const onItemSelected = (item = inputValue) => setItemSelected(item);
     const resetItemSelected = useCallback(() => setItemSelected(''), []);
     const onFocus = (e) => setHasFocusOn(true);
     const onBlur = (e) => {
@@ -36,14 +36,14 @@ function useAutocompleteInput(delay = 0) {
     };
 
     const bind = {
-        value,
-        onChange: e => setValue(e.target.value),
+        value: inputValue,
+        onChange: e => setInputValue(e.target.value),
         onFocus,
         onBlur,
         onKeyDown: e => e.key === 'Enter' && onItemSelected()
     }
 
-    return { inputValue, items, setItems, itemSelected, onItemSelected, resetItemSelected, bind };
+    return { value, items, setItems, itemSelected, onItemSelected, resetItemSelected, bind };
 }
 
 useAutocompleteInput.propTypes = {

@@ -4,14 +4,14 @@ import { citiesList } from '../services/services';
 
 function SearchCities() {
 
-    const { inputValue, items, setItems, itemSelected, onItemSelected, bind: bindInput } = useAutocompleteInput(200);
+    const { value, items, setItems, itemSelected, onItemSelected, bind: bindInput } = useAutocompleteInput(200);
     const [cityDetails, setCityDetails] = useState({});
 
     useEffect(() => {
-        citiesList(inputValue)
+        citiesList(value)
             .then(res => setItems(res))
             .catch(error => console.log(error));
-    }, [inputValue, setItems]);
+    }, [value, setItems]);
 
     useEffect(() => {
         const info = items.find(item => item.city.toLowerCase() === itemSelected.toLowerCase());
