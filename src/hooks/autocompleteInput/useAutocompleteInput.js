@@ -29,19 +29,18 @@ function useAutocompleteInput(delay = 0) {
 
     const onItemSelected = (item = inputValue) => setItemSelected(item);
     const resetItemSelected = useCallback(() => setItemSelected(''), []);
+
+    const onChange = e => setInputValue(e.target.value);
     const onFocus = (e) => setHasFocusOn(true);
     const onBlur = (e) => {
         setHasFocusOn(false);
         setItems([]);
     };
+    const onKeyDown = e => e.key === 'Enter' && onItemSelected();
 
     const bind = {
-        value: inputValue,
-        onChange: e => setInputValue(e.target.value),
-        onFocus,
-        onBlur,
-        onKeyDown: e => e.key === 'Enter' && onItemSelected()
-    }
+        value: inputValue, onChange, onFocus, onBlur, onKeyDown
+    };
 
     return { value, items, setItems, itemSelected, onItemSelected, resetItemSelected, bind };
 }
