@@ -8,7 +8,7 @@ const citiesList = async (query) => {
         const json = await resp.json();
         let res = [];
         const regex = new RegExp(`\\b${query}`, 'gi');
-        for(const item of json) regex.test(item.city) && res.push(item.city);
+        for(const item of json) regex.test(item.city) && res.push(item);
         return res;
     } catch (error) {
         return handlerError({ description: error });

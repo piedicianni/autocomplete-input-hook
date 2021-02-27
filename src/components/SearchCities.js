@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAutocompleteInput from '../hooks/autocompleteInput/useAutocompleteInput';
 import { citiesList } from '../services/services';
 
 function SearchCities() {
 
-    const { inputValue, items, setItems, itemSelected, onItemSelected, bind } = useAutocompleteInput(200);
+    const { inputValue, items, setItems, itemSelected, onItemSelected, bind: bindInput } = useAutocompleteInput(200);
+    const [cityDetails, setCityDetails] = useState({});
 
     useEffect(() => {
         citiesList(inputValue)
@@ -12,28 +13,36 @@ function SearchCities() {
             .catch(error => console.log(error));
     }, [inputValue, setItems]);
 
+    useEffect(() => {
+        const info = items.find(item => item.city.toLowerCase() === itemSelected.toLowerCase());
+        info && setCityDetails(info);
+    }, [itemSelected, items]);
+
     return (
         <div className='search-cities'>
             <div className='input-group'>
                 <input
                     type='text'
                     placeholder='City...'
-                    {...bind}
+                    {...bindInput}
                 />
-                <button onClick={() => onItemSelected()}>Search</button>
+                <button onMouseDown={() => onItemSelected()}>Search</button>
             </div>
             <div className='list-group'>
                 {
                     items.map((item, index) => (
                         <button
                             className='item'
-                            onMouseDown={() => onItemSelected(item)}
+                            onMouseDown={() => onItemSelected(item.city)}
                             key={index}
-                        >{item}</button>
+                        >{item.city}</button>
                     ))
                 }
             </div>
-            <h2>{itemSelected}</h2>
+            <div className='info'>
+                <h1>{cityDetails.country}</h1>
+                <h2>{cityDetails.city}</h2>
+            </div>
         </div>
     )
 }

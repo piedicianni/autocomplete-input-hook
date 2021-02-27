@@ -105,3 +105,8 @@ div{
 .search-cities .list-group .item+.item{
   border-top-width: 0;
 }
+
+.search-cities .info{
+  margin-top: 40px;
+  text-align: center;
+}
