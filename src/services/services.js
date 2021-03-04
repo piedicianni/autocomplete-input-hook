@@ -1,6 +1,6 @@
-const handlerError = (error) => Promise.reject(error);
+const handlerError = error => Promise.reject(error);
 
-const citiesList = async (query) => {
+const citiesList = async query => {
     if(query === '') return [];
     try {
         const resp = await fetch('json-placeholder/cities_with_countries.json');

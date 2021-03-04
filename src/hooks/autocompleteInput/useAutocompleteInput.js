@@ -31,8 +31,8 @@ function useAutocompleteInput(delay = 0) {
     const resetItemSelected = useCallback(() => setItemSelected(''), []);
 
     const onChange = e => setInputValue(e.target.value);
-    const onFocus = (e) => setHasFocusOn(true);
-    const onBlur = (e) => {
+    const onFocus = e => setHasFocusOn(true);
+    const onBlur = e => {
         setHasFocusOn(false);
         setItems([]);
     };
