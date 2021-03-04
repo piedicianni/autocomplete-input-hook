@@ -4,4 +4,4 @@ Simple custom React hook, that allows you to fetch data from input field query a
 
 ## Demo on CodeSandbox
 
-https://codesandbox.io/s/autocomplete-hook-cnbmr?file=/src/App.js
+https://codesandbox.io/s/autocomplete-hook-cnbmr
