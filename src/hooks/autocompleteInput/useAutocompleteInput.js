@@ -10,11 +10,10 @@ function useAutocompleteInput(delay = 0) {
 
     useEffect(() => {
         let timeout;
-        if(hasFocusOn){
-            delay > 0
+        if (!hasFocusOn) return;
+        delay > 0
             ? timeout = setTimeout(() => setValue(inputValue), delay)
             : setValue(inputValue);
-        }
         return () => timeout && clearTimeout(timeout);
     }, [inputValue, hasFocusOn, delay]);
 
